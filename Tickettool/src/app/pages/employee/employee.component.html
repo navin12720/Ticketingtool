@@ -1,1 +1,136 @@
-<p>employee works!</p>
+<div class="row">
+    @if(isNewview){
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-success">
+                <div class="row">
+                    <div class="col-6">
+                        <h5 class="card-title">Employee List</h5>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button class="btn btn-warning" (click)="isNewview=!isNewview">Add New</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Sr No</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Department Name</th>
+                                    <th class="text-center">Contact Number</th>
+                                    <th class="text-center">Email Id</th>
+                                    <th class="text-center">Role</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (item of gridlist; track $index) {
+                                <tr>
+                                    <td>{{$index+1}}</td>
+                                    <td>{{item.employeeName}}</td>
+                                    <td>{{item.deptName}}</td>
+                                    <td>{{item.contactNo}}</td>
+                                    <td>{{item.emailId}}</td>
+                                    <td>{{item.role}}</td>
+
+                                    <td class="text-center">
+                                        <button class="btn btn-primary" (click)="onEdit(item)"> Edit</button>
+                                        <button class="btn btn-danger mx-2" (click)="onDelete(item.deptId)">
+                                            Delete</button>
+                                    </td>
+                                </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }@else {
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-success">
+                <div class="row">
+                    <div class="col-6">
+                        <h5 class="card-title">New Employee</h5>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button class="btn btn-warning" (click)="isNewview=!isNewview">Goto List</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">Employee Name:</label>
+                        <input type="text" [(ngModel)]="newobj.employeeName" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label for="">Contact Number:</label>
+                        <input type="text" [(ngModel)]="newobj.contactNo" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label for="">Email:</label>
+                        <input type="email" [(ngModel)]="newobj.emailId" class="form-control">
+                    </div>
+
+                    <div class="col-6">
+                        <label for="">Department</label>
+                        <select [(ngModel)]="newobj.deptId" class="form-select">
+                            <option value="">Select Department</option>
+                            @for (item of deptlist; track $index) {
+                            <option [value]="item.deptId">{{item.deptName}}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label for="">Role:</label>
+                        <select [(ngModel)]="newobj.role" class="form-select">
+                            <option value="">Select Role</option>
+                            @for (item of rolelist; track $index) {
+                            <option>{{item}}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label for="">Gender:</label>
+                        <label for="">Male </label>
+                        <input type="radio" name="gender" value="Male" [(ngModel)]="newobj.gender">
+                        <label for="">Female </label>
+                        <input type="radio" name="gender" value="Female" [(ngModel)]="newobj.gender">
+                    </div>
+                    <div class="col-6">
+                        <label for="">Password:</label>
+                        <input type="password" [(ngModel)]="newobj.password" class="form-control">
+                    </div>
+
+
+                </div>
+                <div class="row pt-3">
+                    <div class="col-6 text-center">
+                        <button class="btn btn-secondary">Reset</button>
+                    </div>
+                    <div class="col-6 text-center">
+                        @if (this.newobj.employeeId==0) {
+                        <button class="btn btn-success" (click)="save()">Save Employee</button>
+                        }@else {
+                        <button class="btn btn-warning" (click)="Update()">Update Employee</button>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+
+</div>

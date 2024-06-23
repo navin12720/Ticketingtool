@@ -8,12 +8,54 @@
                 <div class="row">
                     <div class="col-3">
                         <label for="">Select Severity</label>
-                        <select name="" id="" class="form-select">
+                        <select [(ngModel)]="newTicketobj.severity" class="form-select">
                             <option value="">Select Severity</option>
                             <option>Low</option>
                             <option>Medium</option>
                             <option>High</option>
                         </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="">Select Department</label>
+                        <select [(ngModel)]="newTicketobj.deptId" class="form-select">
+                            <option value="">Select Dept</option>
+                            @for (item of deptlist; track $index) {
+                            <option [value]="item.deptId">{{item.deptName}}</option>
+                            }
+
+                        </select>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="">Select Parent Category</label>
+                        <select class="form-select" [(ngModel)]="selectPCategory" (change)="onCategorychange()">
+                            <option value="">Select Parent Category</option>
+                            @for (item of PCategorylist; track $index) {
+                            <option [value]="item.categoryName">{{item.categoryName}}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="">Select Child Category</label>
+                        <select [(ngModel)]="newTicketobj.childCategoryId" class="form-select">
+                            <option value="">Select Child Category</option>
+                            @for (item of filterCategory; track $index) {
+                            <option [value]="item.childCategoryId">{{item.categoryName}}</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">Ticket Details</label>
+                        <textarea class="form-control" [(ngModel)]="newTicketobj.requestDetails"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 text-center pt-3">
+                        <button class="btn btn-success" (click)="oncreateTicket()">Create Ticket</button>
                     </div>
                 </div>
             </div>

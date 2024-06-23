@@ -71,4 +71,9 @@ export class MasterService {
   deleteEmployeeById(id: number) {
     return this.http.delete(`${this.apiurl}DeleteEmployee?id=${id}`);
   }
+
+  // --for new ticket
+  newTicket(obj: any) {
+    return this.http.post(`${this.apiurl}CreateNewTicket`, obj);
+  }
 }

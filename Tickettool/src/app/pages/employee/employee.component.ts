@@ -53,7 +53,7 @@ export class EmployeeComponent {
     debugger;
     this.mastersrv.createEmployee(this.newobj).subscribe((res: any) => {
       if (res.result) {
-        alert('Category Created Success');
+        alert('Employee Created Success');
         this.getgridData();
       } else {
         alert(res.message);
@@ -66,7 +66,7 @@ export class EmployeeComponent {
     this.mastersrv.updateEmployee(this.newobj).subscribe((res: any) => {
       debugger;
       if (res.result) {
-        alert('Category Updated Success');
+        alert('Employee Updated Success');
         this.getgridData();
       } else {
         alert(res.message);
@@ -83,7 +83,7 @@ export class EmployeeComponent {
       this.mastersrv.deleteEmployeeById(id).subscribe((res: any) => {
         debugger;
         if (res.result) {
-          alert('Category Deleted Successfully');
+          alert('Employee Deleted Successfully');
           this.getgridData();
         } else {
           alert(res.message);

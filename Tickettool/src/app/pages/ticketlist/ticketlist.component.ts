@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 export class TicketlistComponent implements OnInit {
   mode: string = 'My Tickets';
   loggedUserEmpid: any;
+  username: any;
   mastersrv = inject(MasterService);
 
   ngOnInit(): void {
@@ -19,6 +20,7 @@ export class TicketlistComponent implements OnInit {
     if (loggeduserData != null) {
       const userData = JSON.parse(loggeduserData);
       this.loggedUserEmpid = userData.employeeId;
+      this.username = userData.employeeName;
     }
     this.changemode(this.mode);
   }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,10 +8,18 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './layouts.component.html',
   styleUrl: './layouts.component.css',
 })
-export class LayoutsComponent {
+export class LayoutsComponent implements OnInit {
   router = inject(Router);
+  username: any;
   onLogoff() {
     localStorage.removeItem('ticketUser');
     this.router.navigate(['/login']);
+  }
+  ngOnInit(): void {
+    const loggeduserData = localStorage.getItem('ticketUser');
+    if (loggeduserData != null) {
+      const userData = JSON.parse(loggeduserData);
+      this.username = userData.employeeName;
+    }
   }
 }
